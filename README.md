@@ -2395,7 +2395,7 @@ lines(theoretical,col="red",lwd=2)
 * S = R + NR
 * p(person participates in NLSY97) = R/S
 * p(person participates in NLSY97) = (5369+1164)/7335 = 0.8906612
-* 1-p(person participates in NLSY97) = (5369+1164)/7335 = 0.1093388
+* 1-p(person participates in NLSY97) = 1 - (5369+1164)/7335 = 0.1093388
 * θa|R = 1164/(5369+1164) = 0.1781724
 * θa = p x θa|R + (1-p) x θa|NR 
 * θa|NR ∊ [0,1]
@@ -2693,6 +2693,25 @@ of 1,178 persons, we are not able to discern whether they
 had been arrested by age 23. Using the NLSY data, derive
 bounds for the probability that someone has been arrested at
 least once by age 23.
+
+* National Longitudinal Survey of Youth (1997)
+* p(person is arrested at least once by age 23)= θa
+* # of persons not arrested by age 23 = 4,299
+* # of persons arrested by age 23 = 1,858
+* # of missing cases = 1,178
+* Total # of people = 7,335
+* S = R + NR
+* p(person participates in NLSY97) = R/S
+* p(person participates in NLSY97) = (4299+1858)/7335 = 0.839
+* 1-p(person participates in NLSY97) = 1- (4299+1858)/7335 = 0.161
+* θa|R = 1858/(4299+1858) = 0.302
+* θa = p x θa|R + (1-p) x θa|NR 
+* θa|NR ∊ [0,1]
+* LB[θa] = 0.839*0.302+0.161*0 = 0.253
+* MAR[θa] = 0.839*0.302+0.161*0.178 = 0.302
+* UB[θa] = 0.839*0.302+0.161*1 = 0.414
+* Point-identified estimate assuming MAR = 0.302
+* Partially-identified estimate = [0.253,0.414]
 
 4. Find the maximum likelihood estimate for the probability
 of conviction in the NFL sample studied by Blumstein and
