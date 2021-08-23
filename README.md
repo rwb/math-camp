@@ -2385,6 +2385,7 @@ lines(theoretical,col="red",lwd=2)
 * Less credible --> answer is specific
 * Law of decreasing credibility
 
+```rout
 ##### Empirical example 
 
 * National Longitudinal Survey of Youth (1997)
@@ -2405,6 +2406,7 @@ lines(theoretical,col="red",lwd=2)
 * UB[θa] = 0.891*0.178+0.109*1 = 0.268
 * Point-identified estimate assuming MAR = 0.178
 * Partially-identified estimate = [0.159,0.268]
+```
 
 ```rout
 Problems for Monday 8/23/21
