@@ -2407,44 +2407,6 @@ lines(theoretical,col="red",lwd=2)
 * Point-identified estimate assuming MAR = 0.178
 * Partially-identified estimate = [0.159,0.268]
 ```
-
-```rout
-Problems for Monday 8/23/21
-
-1. Set up a significance test of the acyclicality hypothesis using the
-data from Bushway, Cook, and Philips (2012).
-
-2. Consider the following data on NC and SC counties from 2006:
-
-crate2006 <- c(4807,2499,4922,1882,1271,3351,2593,5090,
-  4654,3716,2514,3604,3468, 870,3338,2555,4642,2666,2826,
-  1610,3946,5688,4176,7380,2458,5010,3546,3546,3028,6640,
-  5857,6072,2152,5301,3966,2950,5755,5270,3929,3283,2922,
-  3537,3998,3682,3584,2811,4740,5831,3793,2270,1314,3466,
-  2779,7664,4145,3045,6072,6158,2819,4067,4103,4337,2740,
-  2567,3531,5806,2020,3787,6534,6572,4717,3178,3482,4203,
-  2997,2891,3663,5337,1978,1618,3692,6996,3326,3294,2874,
-  4712,2716,4797,3080, 804,3391,3986,3794,5176,3956,4480,
-  4489,4004,2666,6166,5745,5525,3722,4826,5381,7581,5910,
-  3968,2309,4561,6669,4244,4900,6201,4239,7222,6482,3285,
-  4298,4570,3898,3502,1766,5944,5938,3244,3039,5925,3352,
-  5763,1680,5392,5702,4340,3742,4237,rep(NA,10))
-  
-Assess the normality of this distribution.
-
-3. The National Longitudinal Survey of Youth contains a
-series of questions about arrest experiences. These questions
-allow us to construct a life history of self-reported arrest
-experiences from ages 8 to 23 years old. According to this
-data, there were N = 1,858 people who said they had been 
-arrested at least one time by age 23. Another 4,299 people
-said they had not been arrested by age 23. For a third group
-of 1,178 persons, we are not able to discern whether they
-had been arrested by age 23. Using the NLSY data, derive
-bounds for the probability that someone has been arrested at
-least once by age 23.
-```
-
 28. Optimization
 
 Blumstein and Benedict (1999) [studied](https://amstat.tandfonline.com/doi/pdf/10.1080/09332480.1999.10542151) 509 NFL players and determined that 109 of them (21.4%) had been arrested. While it is trivial to calculate the arrest rate for the sample, we will conduct a "grid search" to verify that 21.4% is the maximum likelihood estimate of the arrest rate; then we will graph the likelihood function.
@@ -2553,6 +2515,49 @@ and the output is:
 </p>
 
 Note: why do we maximize the likelihood function? The maximum likelihood estimate is the estimate that maximizes the probability of the data looking the way they do (i.e., likelihood is proportional to p(data look the way they do | model)). This is different, by the way, from another number: p(model is correct | data). The discussion of this number arises in Bayesian inference.
+
+```rout
+Problems for Monday 8/23/21
+
+1. Set up a significance test of the acyclicality hypothesis using the
+data from Bushway, Cook, and Philips (2012).
+
+2. Consider the following data on NC and SC counties from 2006:
+
+crate2006 <- c(4807,2499,4922,1882,1271,3351,2593,5090,
+  4654,3716,2514,3604,3468, 870,3338,2555,4642,2666,2826,
+  1610,3946,5688,4176,7380,2458,5010,3546,3546,3028,6640,
+  5857,6072,2152,5301,3966,2950,5755,5270,3929,3283,2922,
+  3537,3998,3682,3584,2811,4740,5831,3793,2270,1314,3466,
+  2779,7664,4145,3045,6072,6158,2819,4067,4103,4337,2740,
+  2567,3531,5806,2020,3787,6534,6572,4717,3178,3482,4203,
+  2997,2891,3663,5337,1978,1618,3692,6996,3326,3294,2874,
+  4712,2716,4797,3080, 804,3391,3986,3794,5176,3956,4480,
+  4489,4004,2666,6166,5745,5525,3722,4826,5381,7581,5910,
+  3968,2309,4561,6669,4244,4900,6201,4239,7222,6482,3285,
+  4298,4570,3898,3502,1766,5944,5938,3244,3039,5925,3352,
+  5763,1680,5392,5702,4340,3742,4237,rep(NA,10))
+  
+Assess the normality of this distribution.
+
+3. The National Longitudinal Survey of Youth contains a
+series of questions about arrest experiences. These questions
+allow us to construct a life history of self-reported arrest
+experiences from ages 8 to 23 years old. According to this
+data, there were N = 1,858 people who said they had been 
+arrested at least one time by age 23. Another 4,299 people
+said they had not been arrested by age 23. For a third group
+of 1,178 persons, we are not able to discern whether they
+had been arrested by age 23. Using the NLSY data, derive
+bounds for the probability that someone has been arrested at
+least once by age 23.
+
+4. Find the maximum likelihood estimate for the probability
+of conviction in the NFL sample studied by Blumstein and
+Benedict (1999). The number of players studied was 509 and
+the number who were convicted was 43.
+```
+
 
 29. Estimates and estimators
 
