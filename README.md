@@ -2726,6 +2726,58 @@ Solution:
 of conviction in the NFL sample studied by Blumstein and
 Benedict (1999). The number of players studied was 509 and
 the number who were convicted was 43.
+
+n <- 509
+r <- 43
+r/n
+
+pi <- seq(from=0,to=1,by=0.001) 
+ncr <- choose(n,r)
+likelihood <- ncr*(pi^r)*((1-pi)^(n-r))
+
+# concatenate pi and likelihood into the
+# same data frame, then select the pair
+# that maximizes the likelihood function
+
+like <- data.frame(pi,likelihood)
+neighborhood <- subset(like,abs(likelihood-max(like$likelihood))<0.01)
+neighborhood
+
+> n <- 509
+> r <- 43
+> r/n
+[1] 0.08447937
+> 
+> pi <- seq(from=0,to=1,by=0.001) 
+> ncr <- choose(n,r)
+> likelihood <- ncr*(pi^r)*((1-pi)^(n-r))
+> 
+> # concatenate pi and likelihood into the
+> # same data frame, then select the pair
+> # that maximizes the likelihood function
+> 
+> like <- data.frame(pi,likelihood)
+> neighborhood <- subset(like,abs(likelihood-max(like$likelihood))<0.01)
+> neighborhood
+      pi likelihood
+79 0.078 0.05489606
+80 0.079 0.05725542
+81 0.080 0.05927356
+82 0.081 0.06091835
+83 0.082 0.06216545
+84 0.083 0.06299882
+85 0.084 0.06341092
+86 0.085 0.06340269
+87 0.086 0.06298319
+88 0.087 0.06216905
+89 0.088 0.06098367
+90 0.089 0.05945631
+91 0.090 0.05762099
+92 0.091 0.05551540
+> 
+> 43/509
+[1] 0.08447937
+> 
 ```
 
 
