@@ -2655,10 +2655,10 @@ pdf.pt3 <- exp(-1/2*pdf.pt2)
 pdf <- pdf.pt1*pdf.pt3
 plot(x=x,y=pdf,type="l",lty=1,lwd=2,main="Theoretical Normal Distribution") 
 
-x <- rnorm(n=1000000,mean=3998.364,sd=1558.467)
+x <- rnorm(n=1000000,mean=4081.544,sd=1479.672)
 mean(x)
 sd(x)
-boxplot(crate,x,
+boxplot(crate2006,x,
   main="2006 NC/SC County Crime Rates & Theoretical Normal Distribution",
   ylab="2006 Index Crime Rate per 100k Population",
   names=c("Empirical Distribution","Theoretical Distribution"))
@@ -2674,11 +2674,11 @@ lines(theoretical,col="red",lwd=2)
 </p>
 
 <p align="center">
-<img src="/gfiles/2006-plot.png" width="600px">
+<img src="/gfiles/2006-plota.png" width="600px">
 </p>
 
 <p align="center">
-<img src="/gfiles/2006-normal.png" width="600px">
+<img src="/gfiles/2006-normala.png" width="600px">
 </p>
 
 ```rout
