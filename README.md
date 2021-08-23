@@ -2674,7 +2674,7 @@ lines(theoretical,col="red",lwd=2)
 </p>
 
 <p align="center">
-<img src="/gfiles/2006-plota.png" width="600px">
+<img src="/gfiles/2006-boxplota.png" width="600px">
 </p>
 
 <p align="center">
