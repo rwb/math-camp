@@ -2306,15 +2306,14 @@ and here is the resulting plotspace:
 * We can calculate this theoretical distribution:
 
 ```R
-> mu <- 3998.364
-> sigma <- 1558.467
-> x <- seq(from=0,to=8000,by=1)
-> pdf.pt1 <- 1/(sigma*sqrt(2*pi))
-> pdf.pt2 <- ((x-mu)/sigma)^2
-> pdf.pt3 <- exp(-1/2*pdf.pt2)
-> pdf <- pdf.pt1*pdf.pt3
-> plot(x=x,y=pdf,type="l",lty=1,lwd=2,main="Theoretical Normal Distribution")
-> 
+mu <- 3998.364
+sigma <- 1558.467
+x <- seq(from=0,to=8000,by=1)
+pdf.pt1 <- 1/(sigma*sqrt(2*pi))
+pdf.pt2 <- ((x-mu)/sigma)^2
+pdf.pt3 <- exp(-1/2*pdf.pt2)
+pdf <- pdf.pt1*pdf.pt3
+plot(x=x,y=pdf,type="l",lty=1,lwd=2,main="Theoretical Normal Distribution") 
 ```
 
 * Here is a plot:
@@ -2332,7 +2331,7 @@ sd(x)
 boxplot(crate,x,
   main="2005 NC/SC County Crime Rates & Theoretical Normal Distribution",
   ylab="2005 Index Crime Rate per 100k Population",
-  names=c("Empirical Distribution","Theoretical Distribution"))"
+  names=c("Empirical Distribution","Theoretical Distribution"))
 ```
 
 * Here is the output:
@@ -2358,7 +2357,6 @@ theoretical <- quantile(x,seq(from=0.01,to=0.99,by=0.01))
 plot(empirical)
 lines(theoretical,col="red",lwd=2)
 ```
-
 * And, here is the resulting plot:
 
 <p align="center">
@@ -2522,6 +2520,102 @@ Problems for Monday 8/23/21
 1. Set up a significance test of the acyclicality hypothesis using the
 data from Bushway, Cook, and Philips (2012).
 
+Solution: 
+
+p <- 0.5
+
+n <- 13; r <- 0;  pr0 <-  choose(n,r)*p^r*(1-p)^(n-r);
+         r <- 1;  pr1 <-  choose(n,r)*p^r*(1-p)^(n-r);
+         r <- 2;  pr2 <-  choose(n,r)*p^r*(1-p)^(n-r);
+         r <- 3;  pr3 <-  choose(n,r)*p^r*(1-p)^(n-r);
+         r <- 4;  pr4 <-  choose(n,r)*p^r*(1-p)^(n-r);
+         r <- 5;  pr5 <-  choose(n,r)*p^r*(1-p)^(n-r);
+         r <- 6;  pr6 <-  choose(n,r)*p^r*(1-p)^(n-r);
+         r <- 7;  pr7 <-  choose(n,r)*p^r*(1-p)^(n-r);
+         r <- 8;  pr8 <-  choose(n,r)*p^r*(1-p)^(n-r);
+         r <- 9;  pr9 <-  choose(n,r)*p^r*(1-p)^(n-r);
+         r <- 10; pr10 <-  choose(n,r)*p^r*(1-p)^(n-r);
+         r <- 11; pr11 <-  choose(n,r)*p^r*(1-p)^(n-r);
+         r <- 12; pr12 <-  choose(n,r)*p^r*(1-p)^(n-r);
+         r <- 13; pr13 <-  choose(n,r)*p^r*(1-p)^(n-r);
+
+pr0
+pr1
+pr2
+pr3
+pr4
+pr5
+pr6
+pr7
+pr8
+pr9
+pr10
+pr11
+pr12
+pr13
+
+# the critical region should contain no more than 5% of the
+# probability distribution for the sample space.
+
+pr0+pr13
+pr0+pr1+pr12+pr13
+pr0+pr1+pr2+pr11+pr12+pr13
+pr0+pr1+pr2+pr3+pr10+pr11+pr12+pr13
+
+The results I obtained are:
+
+> pr0
+[1] 0.0001220703
+> pr1
+[1] 0.001586914
+> pr2
+[1] 0.009521484
+> pr3
+[1] 0.03491211
+> pr4
+[1] 0.08728027
+> pr5
+[1] 0.1571045
+> pr6
+[1] 0.2094727
+> pr7
+[1] 0.2094727
+> pr8
+[1] 0.1571045
+> pr9
+[1] 0.08728027
+> pr10
+[1] 0.03491211
+> pr11
+[1] 0.009521484
+> pr12
+[1] 0.001586914
+> pr13
+[1] 0.0001220703
+> 
+> # the critical region should contain no more than 5% of the
+> # probability distribution for the sample space.
+> 
+> pr0+pr13
+[1] 0.0002441406
+> pr0+pr1+pr12+pr13
+[1] 0.003417969
+> pr0+pr1+pr2+pr11+pr12+pr13
+[1] 0.02246094
+> pr0+pr1+pr2+pr3+pr10+pr11+pr12+pr13
+[1] 0.09228516
+
+To satisfy my criterion that the critical region should contain
+no more than 5% of the probability distribution of the sample
+space, I define the events r={0,1,2,11,12,13} as the critical
+region. Any time r falls in this region, I reject the acyclicality
+hypothesis.
+
+Murder: fail to reject acyclicality hypothesis (r = 6)
+Robbery: fail to reject the acyclicality hypothesis (r = 10)
+Burglary: reject the acyclicality hypothesis (r = 11)
+Auto Theft: fail to reject the acyclicality hypothesis (r = 4)
+
 2. Consider the following data on NC and SC counties from 2006:
 
 crate2006 <- c(4807,2499,4922,1882,1271,3351,2593,5090,
@@ -2539,7 +2633,55 @@ crate2006 <- c(4807,2499,4922,1882,1271,3351,2593,5090,
   5763,1680,5392,5702,4340,3742,4237,rep(NA,10))
   
 Assess the normality of this distribution.
+  
+Solution:
 
+> length(crate2006)
+[1] 146
+> mean(crate2006,na.rm=T)
+[1] 4081.544
+> median(crate2006,na.rm=T)
+[1] 3937.5
+> sd(crate2006,na.rm=T)
+[1] 1479.672
+> 
+
+mu <- 4081.544
+sigma <- 1479.672
+x <- seq(from=0,to=8000,by=1)
+pdf.pt1 <- 1/(sigma*sqrt(2*pi))
+pdf.pt2 <- ((x-mu)/sigma)^2
+pdf.pt3 <- exp(-1/2*pdf.pt2)
+pdf <- pdf.pt1*pdf.pt3
+plot(x=x,y=pdf,type="l",lty=1,lwd=2,main="Theoretical Normal Distribution") 
+
+x <- rnorm(n=1000000,mean=3998.364,sd=1558.467)
+mean(x)
+sd(x)
+boxplot(crate,x,
+  main="2006 NC/SC County Crime Rates & Theoretical Normal Distribution",
+  ylab="2006 Index Crime Rate per 100k Population",
+  names=c("Empirical Distribution","Theoretical Distribution"))
+
+empirical <- quantile(crate2006,seq(from=0.01,to=0.99,by=0.01),na.rm=T)
+theoretical <- quantile(x,seq(from=0.01,to=0.99,by=0.01))
+plot(empirical)
+lines(theoretical,col="red",lwd=2)
+```
+
+<p align="center">
+<img src="/gfiles/2006-plot.png" width="600px">
+</p>
+
+<p align="center">
+<img src="/gfiles/2006-plot.png" width="600px">
+</p>
+
+<p align="center">
+<img src="/gfiles/2006-normal.png" width="600px">
+</p>
+
+```rout
 3. The National Longitudinal Survey of Youth contains a
 series of questions about arrest experiences. These questions
 allow us to construct a life history of self-reported arrest
