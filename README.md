@@ -2381,8 +2381,8 @@ lines(theoretical,col="red",lwd=2)
 ##### Charles Manski (1995,2012)
 
 * Conclusions = data + assumptions (identification)
-* More credible --> answer is vague
-* Less credible --> answer is specific
+* More credible --> answer is vague (weaker assumptions)
+* Less credible --> answer is specific (stronger assumptions)
 * Law of decreasing credibility
 
 ```rout
