@@ -2694,6 +2694,8 @@ had been arrested by age 23. Using the NLSY data, derive
 bounds for the probability that someone has been arrested at
 least once by age 23.
 
+Solution:
+
 * National Longitudinal Survey of Youth (1997)
 * p(person is arrested at least once by age 23)= θa
 * # of persons not arrested by age 23 = 4,299
