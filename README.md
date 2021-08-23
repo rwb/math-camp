@@ -2385,6 +2385,27 @@ lines(theoretical,col="red",lwd=2)
 * Less credible --> answer is specific
 * Law of decreasing credibility
 
+##### Empirical example 
+
+* National Longitudinal Survey of Youth (1997)
+* p(person is arrested at least once by age 18)= θa
+* # of persons not arrested by age 18 = 5,369
+* # of peresons arrested by age 18 = 1,164
+* # of missing cases = 802
+* Total # of people = 7,335
+* S = R + NR
+* p(person participates in NLSY97) = R/S
+* p(person participates in NLSY97) = (5369+1164)/7335 = 0.8906612
+* 1-p(person participates in NLSY97) = (5369+1164)/7335 = 0.1093388
+* θa|R = 1164/(5369+1164) = 0.1781724
+* θa = p x θa|R + (1-p) x θa|NR 
+* θa|NR ∊ [0,1]
+* LB[θa] = 0.891*0.178+0.109*0 = 0.159
+* MAR[θa] = 0.891*0.178+0.109*0.178 = 0.178
+* UB[θa] = 0.891*0.178+0.109*1 = 0.268
+* Point-identified estimate assuming MAR = 0.178
+* Partially-identified estimate = [0.159,0.268]
+
 ```rout
 Problems for Monday 8/23/21
 
