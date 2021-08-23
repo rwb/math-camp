@@ -2411,7 +2411,7 @@ lines(theoretical,col="red",lwd=2)
 
 Blumstein and Benedict (1999) [studied](https://amstat.tandfonline.com/doi/pdf/10.1080/09332480.1999.10542151) 509 NFL players and determined that 109 of them (21.4%) had been arrested. While it is trivial to calculate the arrest rate for the sample, we will conduct a "grid search" to verify that 21.4% is the maximum likelihood estimate of the arrest rate; then we will graph the likelihood function.
 
-* Parameter of interest: pi
+* Parameter of interest: pi ∊ [0,1]
 * Number of cases (n): 509
 * Number of people arrested (r): 109
 * Likelihood function:
