@@ -3434,7 +3434,7 @@ median(y.ss)
 
 # now, let's repeat this process [nsamples] times
 
-nsamples <- 10000
+nsamples <- 100000
 
 y.s.mean <- vector()
 se.mean <- vector()
@@ -3447,26 +3447,23 @@ for(i in 1:nsamples){
   y.s.median[i] <- median(y.s)
   }
 
-# calculate the mean squared error (mse)
+mean(y.s.mean)
+mean(y.s.median)
 
-y.s.mean.mse <- sum((y.s.mean-popmean)^2)/nsamples
-y.s.median.mse <- sum((y.s.median-popmean)^2)/nsamples
+median(y.s.mean)
+median(y.s.median)
 
-# look at the results
-
-c(mean(y.s.mean),sd(y.s.mean),y.s.mean.mse)
-c(mean(y.s.median),sd(y.s.median),y.s.median.mse)
+sd(y.s.mean)
+sd(y.s.median)
 
 mean(se.mean)
+median(se.mean)
+
 ```
 
 And, here are the results:
 
 ```rout
-> # set the random number seed
-> 
-> set.seed(38241)
-> 
 > # simulate a random variable, yp, for the
 > # population [popsize] which is normally 
 > # distributed with a mean of [mu] and a 
@@ -3482,7 +3479,7 @@ And, here are the results:
 > 
 > popmean <- mean(y.p)
 > popmean
-[1] 99.99735
+[1] 99.98423
 > 
 > # draw a single sample of size n=[sampsize] 
 > # from the population with replacement
@@ -3493,13 +3490,13 @@ And, here are the results:
 > # calculate the sample mean and median for the single sample
 > 
 > mean(y.ss)
-[1] 98.7305
+[1] 99.71239
 > median(y.ss)
-[1] 98.75695
+[1] 99.28097
 > 
 > # now, let's repeat this process [nsamples] times
 > 
-> nsamples <- 10000
+> nsamples <- 100000
 > 
 > y.s.mean <- vector()
 > se.mean <- vector()
@@ -3511,29 +3508,44 @@ And, here are the results:
 +   se.mean[i] <- sd(y.s)/sqrt(sampsize-1)
 +   y.s.median[i] <- median(y.s)
 +   }
+
+mean(y.s.mean)
+mean(y.s.median)
+
+median(y.s.mean)
+median(y.s.median)
+
+sd(y.s.mean)
+sd(y.s.median)
+
+mean(se.mean)
+median(se.mean)
 > 
-> # calculate the mean squared error (mse)
+> mean(y.s.mean)
+[1] 99.97951
+> mean(y.s.median)
+[1] 99.98666
 > 
-> y.s.mean.mse <- sum((y.s.mean-popmean)^2)/nsamples
-> y.s.median.mse <- sum((y.s.median-popmean)^2)/nsamples
+> median(y.s.mean)
+[1] 99.97897
+> median(y.s.median)
+[1] 99.98743
 > 
-> # look at the results
-> 
-> c(mean(y.s.mean),sd(y.s.mean),y.s.mean.mse)
-[1] 99.995368  1.004296  1.008514
-> c(mean(y.s.median),sd(y.s.median),y.s.median.mse)
-[1] 99.984806  1.238196  1.533134
+> sd(y.s.mean)
+[1] 1.000284
+> sd(y.s.median)
+[1] 1.243066
 > 
 > mean(se.mean)
-[1] 1.003225
+[1] 1.002333
+> median(se.mean)
+[1] 1.001269
 > 
 ```
 
 * What these results tell us is that both the sample mean and 
 the sample median - on average - give us approximately the 
 correct inference of a mean of 100. The two estimators differ 
-in their sampling variation. The mean square error for the 
-sample median is about 50% higher than it is for the sample 
-mean in this simulation study. The median is, therefore, 
-a less efficient estimator of the population mean compared 
-to the sample mean.
+in their sampling variation. The sample mean is, therefore, 
+a more efficient estimator of the population mean compared 
+to the sample median.
