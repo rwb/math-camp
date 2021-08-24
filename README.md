@@ -2507,14 +2507,14 @@ Here is a dataset:
 | Kansas       |     185      |           160  | -   |
 | Kentucky       |     310      |           258  | -   |
 | Louisiana       |     653      |           598  | -   |
-| Maine       |     19      |           19  | -   |
+| Maine       |     19      |           19  | 0   |
 | Maryland       |     587      |           541  | -   |
 | Massachusetts |     171      |           158  | -   |
 | Michigan |     588      |           613  | +   |
-| Minnesota |     122      |     122  | -   |
+| Minnesota |     122      |     122  | 0   |
 | Mississippi |     360      |     382  | +   |
 | Missouri |     655      |     658  | +   |
-| Montana |     42      |     42  | -   |
+| Montana |     42      |     42  | 0   |
 | Nevada |     221      |     225  | +   |
 | New Hampshire |     17      |     21  | +   |
 | New Jersey | 352 | 311 | - |
