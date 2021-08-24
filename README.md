@@ -3459,6 +3459,8 @@ sd(y.s.median)
 mean(se.mean)
 median(se.mean)
 
+boxplot(y.s.mean,y.s.median)
+
 ```
 
 And, here are the results:
@@ -3542,6 +3544,10 @@ median(se.mean)
 [1] 1.001269
 > 
 ```
+
+<p align="center">
+<img src="/gfiles/boxplot-mean-median.png" width="600px">
+</p>
 
 * What these results tell us is that both the sample mean and 
 the sample median - on average - give us approximately the 
