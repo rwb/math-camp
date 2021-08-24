@@ -2245,11 +2245,13 @@ distribution which is larger than the central 95%. So, let's try again:
 
 * Suppose homicide occurrence in the U.S. does not change from one year to the 
 next. If this is true, we might expect that about half of the states would see
-an increase in homicide while the other half do not. We can test this proposition
+an increase in homicide while the other half would see a decrease. We can test 
+this proposition
 by thinking of each state as a separate trial or experiment with two outcomes:
-(1) the number of homicides increases from one year to the next; or (2) the 
-number of homicides does not increase from one year to the next. The hypothesis
-to be tested is whether the probability of either outcome is equally likely.
+(1) the number of homicides decreases from one year to the next; or (2) the 
+number of homicides stays the same or increases from one year to the next. The 
+hypothesis to be tested is whether the probability of either outcome is equally 
+likely.
 
 ```r
 p <- 0.5
@@ -2488,56 +2490,56 @@ r ∊ [0,50], combined with a 0.05 significance level for the test, we conclude
 that the critical region is *r* ∊ [0,17] and [33,50] (for a two-tailed test). 
 Here is a dataset:
 
-| State         | 2017 Homicides | 2018 Homicides | +/- |
+| State         | 2017 Homicides | 2018 Homicides | r = |
 | :------------ | -------------: |--------------: |:--: |
-| Alabama       | 602            |           568  | -   |
-| Alaska        | 78             |            56  | -   |
-| Arizona       | 441            |           420  | -   |
-| California    | 2,022          |         1,890  | -   |
-| Colorado      | 261            |           263  | +   |
-| Connecticut   | 109            |            92  | -   |
-| Delaware      |  63            |            57  | -   |
-| Florida       |  1,269         |         1,315  | +   |
-| Georgia       |    810         |           794  | -   |
-| Hawaii        |     35         |            40  | +   |
-| Idaho         |     50         |            41  | -   |
-| Illinois      |     1,120      |           994  | -   |
-| Indiana       |     456      |           473  | +   |
-| Iowa       |     104      |           81  | -   |
-| Kansas       |     185      |           160  | -   |
-| Kentucky       |     310      |           258  | -   |
-| Louisiana       |     653      |           598  | -   |
+| Alabama       | 602            |           568  | 1   |
+| Alaska        | 78             |            56  | 1   |
+| Arizona       | 441            |           420  | 1   |
+| California    | 2,022          |         1,890  | 1   |
+| Colorado      | 261            |           263  | 0   |
+| Connecticut   | 109            |            92  | 1   |
+| Delaware      |  63            |            57  | 1   |
+| Florida       |  1,269         |         1,315  | 0   |
+| Georgia       |    810         |           794  | 1   |
+| Hawaii        |     35         |            40  | 0   |
+| Idaho         |     50         |            41  | 1   |
+| Illinois      |     1,120      |           994  | 1   |
+| Indiana       |     456      |           473  | 0   |
+| Iowa       |     104      |           81  | 1   |
+| Kansas       |     185      |           160  | 1   |
+| Kentucky       |     310      |           258  | 1   |
+| Louisiana       |     653      |           598  | 1   |
 | Maine       |     19      |           19  | 0   |
-| Maryland       |     587      |           541  | -   |
-| Massachusetts |     171      |           158  | -   |
-| Michigan |     588      |           613  | +   |
+| Maryland       |     587      |           541  | 1   |
+| Massachusetts |     171      |           158  | 1   |
+| Michigan |     588      |           613  | 0   |
 | Minnesota |     122      |     122  | 0   |
-| Mississippi |     360      |     382  | +   |
-| Missouri |     655      |     658  | +   |
+| Mississippi |     360      |     382  | 0   |
+| Missouri |     655      |     658  | 0   |
 | Montana |     42      |     42  | 0   |
-| Nevada |     221      |     225  | +   |
-| New Hampshire |     17      |     21  | +   |
-| New Jersey | 352 | 311 | - |
-| New Mexico | 173 | 215 | + |
-| New York | 577 | 611 | + |
-| North Carolina | 679 | 647 | - |
-| North Dakota | 15 | 20 | + |
-| Ohio | 828 | 760 | - |
-| Oklahoma | 318 | 265 | - |
-| Oregon | 127 | 102 | - |
-| Pennsylvania | 791 | 781 | - |
-| Rhode Island | 19 | 16 | - |
-| South Carolina | 444 | 481 | + |
-| South Dakota | 34 | 32 | - |
-| Tennessee | 557 | 604 | + |
-| Texas | 1,653 | 1,557 | - |
-| Utah | 79 | 67 | - |
-| Vermont | 15 | 14 | - |
-| Virginia | 455 | 425 | - |
-| Washington | 266 | 275 | + |
-| West Virginia | 112 | 97 | - |
-| Wisconsin | 202 | 204 | + |
-| Wyoming | 19 | 22 | + |
+| Nevada |     221      |     225  | 0   |
+| New Hampshire |     17      |     21  | 0   |
+| New Jersey | 352 | 311 | 1 |
+| New Mexico | 173 | 215 | 0 |
+| New York | 577 | 611 | 0 |
+| North Carolina | 679 | 647 | 1 |
+| North Dakota | 15 | 20 | 0 |
+| Ohio | 828 | 760 | 1 |
+| Oklahoma | 318 | 265 | 1 |
+| Oregon | 127 | 102 | 1 |
+| Pennsylvania | 791 | 781 | 1 |
+| Rhode Island | 19 | 16 | 1 |
+| South Carolina | 444 | 481 | 0 |
+| South Dakota | 34 | 32 | 1 |
+| Tennessee | 557 | 604 | 0 |
+| Texas | 1,653 | 1,557 | 1 |
+| Utah | 79 | 67 | 1 |
+| Vermont | 15 | 14 | 1 |
+| Virginia | 455 | 425 | 1 |
+| Washington | 266 | 275 | 0 |
+| West Virginia | 112 | 97 | 1 |
+| Wisconsin | 202 | 204 | 0 |
+| Wyoming | 19 | 22 | 0 |
 
 
 26. Normal distribution
