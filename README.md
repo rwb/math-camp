@@ -2240,6 +2240,260 @@ distribution which is larger than the central 95%. So, let's try again:
   rejecting the hypothesis of acyclicality for murder (4 countercyclical movements). 
   Auto theft is a borderline case but if we adopt the strict *p < .05* significance 
   level, the evidence is not strong enough to reject the hypothesis of acyclicality.
+  
+###### New Example
+
+* Suppose homicide occurrence in the U.S. does not change from one year to the 
+next. If this is true, we might expect that about half of the states would see
+an increase in homicide while the other half do not. We can test this proposition
+by thinking of each state as a separate trial or experiment with two outcomes:
+(1) the number of homicides increases from one year to the next; or (2) the 
+number of homicides does not increase from one year to the next. The hypothesis
+to be tested is whether the probability of either outcome is equally likely.
+
+```r
+p <- 0.5
+
+n <- 50;  r <- 0;  pr0 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 1;  pr1 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 2;  pr2 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 3;  pr3 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 4;  pr4 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 5;  pr5 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 6;  pr6 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 7;  pr7 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 8;  pr8 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 9;  pr9 <-  choose(n,r)*p^r*(1-p)^(n-r);
+
+          r <- 10;  pr10 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 11;  pr11 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 12;  pr12 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 13;  pr13 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 14;  pr14 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 15;  pr15 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 16;  pr16 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 17;  pr17 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 18;  pr18 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 19;  pr19 <-  choose(n,r)*p^r*(1-p)^(n-r);
+
+          r <- 20;  pr20 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 21;  pr21 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 22;  pr22 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 23;  pr23 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 24;  pr24 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 25;  pr25 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 26;  pr26 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 27;  pr27 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 28;  pr28 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 29;  pr29 <-  choose(n,r)*p^r*(1-p)^(n-r);
+ 
+          r <- 30;  pr30 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 31;  pr31 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 32;  pr32 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 33;  pr33 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 34;  pr34 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 35;  pr35 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 36;  pr36 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 37;  pr37 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 38;  pr38 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 39;  pr39 <-  choose(n,r)*p^r*(1-p)^(n-r);
+
+          r <- 40;  pr40 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 41;  pr41 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 42;  pr42 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 43;  pr43 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 44;  pr44 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 45;  pr45 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 46;  pr46 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 47;  pr47 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 48;  pr48 <-  choose(n,r)*p^r*(1-p)^(n-r);
+          r <- 49;  pr49 <-  choose(n,r)*p^r*(1-p)^(n-r);
+
+          r <- 50;  pr50 <-  choose(n,r)*p^r*(1-p)^(n-r);
+
+
+# verify the probabilities sum to 1.0
+
+pr0+pr1+pr2+pr3+pr4+pr5+pr6+pr7+pr8+pr9+
+pr10+pr11+pr12+pr13+pr14+pr15+pr16+pr17+pr18+pr19+
+pr20+pr21+pr22+pr23+pr24+pr25+pr26+pr27+pr28+pr29+
+pr30+pr31+pr32+pr33+pr34+pr35+pr36+pr37+pr38+pr39+
+pr40+pr41+pr42+pr43+pr44+pr45+pr46+pr47+pr48+pr49+pr50
+
+# conduct test of hypothesis that p=0.5 at the .05 significance level
+# critical region must be less than 0.05
+# central region must be greater than 0.95
+
+# critical region: r ∊ {0,50}
+# central region: r ∊ [1,49]
+
+critical.region <- pr0+pr50
+critical.region
+central.region <- pr1+pr2+pr3+pr4+pr5+pr6+pr7+pr8+pr9+
+  pr10+pr11+pr12+pr13+pr14+pr15+pr16+pr17+pr18+pr19+
+  pr20+pr21+pr22+pr23+pr24+pr25+pr26+pr27+pr28+pr29+
+  pr30+pr31+pr32+pr33+pr34+pr35+pr36+pr37+pr38+pr39+
+  pr40+pr41+pr42+pr43+pr44+pr45+pr46+pr47+pr48+pr49
+central.region
+
+
+# critical region: r ∊ [0,17] and [33,50]
+# central region: r ∊ [18,32]
+
+critical.region <- pr0+pr1+pr2+pr3+pr4+pr5+pr6+pr7+pr8+pr9+
+                   pr10+pr11+pr12+pr13+pr14+pr15+pr16+pr17+
+                   pr33+pr34+pr35+pr36+pr37+pr38+pr39+pr40+
+                   pr41+pr42+pr43+pr44+pr45+pr46+pr47+pr48+pr49+pr50
+critical.region
+central.region <- pr18+pr19+pr20+pr21+pr22+pr23+pr24+pr25+pr26+pr27+pr28+pr29+
+                  pr30+pr31+pr32
+central.region
+
+# critical region: r ∊ [0,18] and [32,50]
+# central region: r ∊ [19,31]
+
+critical.region <- pr0+pr1+pr2+pr3+pr4+pr5+pr6+pr7+pr8+pr9+
+                   pr10+pr11+pr12+pr13+pr14+pr15+pr16+pr17+pr18+
+                   pr32+pr33+pr34+pr35+pr36+pr37+pr38+pr39+pr40+
+                   pr41+pr42+pr43+pr44+pr45+pr46+pr47+pr48+pr49+pr50
+critical.region
+central.region <- pr19+pr20+pr21+pr22+pr23+pr24+pr25+pr26+pr27+pr28+pr29+
+                  pr30+pr31
+central.region
+```
+
+Here is the output:
+
+```rout
+> p <- 0.5
+> 
+> n <- 50;  r <- 0;  pr0 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 1;  pr1 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 2;  pr2 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 3;  pr3 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 4;  pr4 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 5;  pr5 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 6;  pr6 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 7;  pr7 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 8;  pr8 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 9;  pr9 <-  choose(n,r)*p^r*(1-p)^(n-r);
+> 
+>           r <- 10;  pr10 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 11;  pr11 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 12;  pr12 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 13;  pr13 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 14;  pr14 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 15;  pr15 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 16;  pr16 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 17;  pr17 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 18;  pr18 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 19;  pr19 <-  choose(n,r)*p^r*(1-p)^(n-r);
+> 
+>           r <- 20;  pr20 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 21;  pr21 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 22;  pr22 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 23;  pr23 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 24;  pr24 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 25;  pr25 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 26;  pr26 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 27;  pr27 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 28;  pr28 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 29;  pr29 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>  
+>           r <- 30;  pr30 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 31;  pr31 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 32;  pr32 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 33;  pr33 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 34;  pr34 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 35;  pr35 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 36;  pr36 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 37;  pr37 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 38;  pr38 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 39;  pr39 <-  choose(n,r)*p^r*(1-p)^(n-r);
+> 
+>           r <- 40;  pr40 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 41;  pr41 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 42;  pr42 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 43;  pr43 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 44;  pr44 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 45;  pr45 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 46;  pr46 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 47;  pr47 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 48;  pr48 <-  choose(n,r)*p^r*(1-p)^(n-r);
+>           r <- 49;  pr49 <-  choose(n,r)*p^r*(1-p)^(n-r);
+> 
+>           r <- 50;  pr50 <-  choose(n,r)*p^r*(1-p)^(n-r);
+> 
+> 
+> # verify the probabilities sum to 1.0
+> 
+> pr0+pr1+pr2+pr3+pr4+pr5+pr6+pr7+pr8+pr9+
++ pr10+pr11+pr12+pr13+pr14+pr15+pr16+pr17+pr18+pr19+
++ pr20+pr21+pr22+pr23+pr24+pr25+pr26+pr27+pr28+pr29+
++ pr30+pr31+pr32+pr33+pr34+pr35+pr36+pr37+pr38+pr39+
++ pr40+pr41+pr42+pr43+pr44+pr45+pr46+pr47+pr48+pr49+pr50
+[1] 1
+> 
+> # conduct test of hypothesis that p=0.5 at the .05 significance level
+> # critical region must be less than 0.05
+> # central region must be greater than 0.95
+> 
+> # critical region: r ∊ {0,50}
+> # central region: r ∊ [1,49]
+> 
+> critical.region <- pr0+pr50
+> critical.region
+[1] 1.776357e-15
+> central.region <- pr1+pr2+pr3+pr4+pr5+pr6+pr7+pr8+pr9+
++   pr10+pr11+pr12+pr13+pr14+pr15+pr16+pr17+pr18+pr19+
++   pr20+pr21+pr22+pr23+pr24+pr25+pr26+pr27+pr28+pr29+
++   pr30+pr31+pr32+pr33+pr34+pr35+pr36+pr37+pr38+pr39+
++   pr40+pr41+pr42+pr43+pr44+pr45+pr46+pr47+pr48+pr49
+> central.region
+[1] 1
+> 
+> 
+> # critical region: r ∊ [0,17] and [33,50]
+> # central region: r ∊ [18,32]
+> 
+> critical.region <- pr0+pr1+pr2+pr3+pr4+pr5+pr6+pr7+pr8+pr9+
++                    pr10+pr11+pr12+pr13+pr14+pr15+pr16+pr17+
++                    pr33+pr34+pr35+pr36+pr37+pr38+pr39+pr40+
++                    pr41+pr42+pr43+pr44+pr45+pr46+pr47+pr48+pr49+pr50
+> critical.region
+[1] 0.03283914
+> central.region <- pr18+pr19+pr20+pr21+pr22+pr23+pr24+pr25+pr26+pr27+pr28+pr29+
++                   pr30+pr31+pr32
+> central.region
+[1] 0.9671609
+> 
+> # critical region: r ∊ [0,18] and [32,50]
+> # central region: r ∊ [19,31]
+> 
+> critical.region <- pr0+pr1+pr2+pr3+pr4+pr5+pr6+pr7+pr8+pr9+
++                    pr10+pr11+pr12+pr13+pr14+pr15+pr16+pr17+pr18+
++                    pr32+pr33+pr34+pr35+pr36+pr37+pr38+pr39+pr40+
++                    pr41+pr42+pr43+pr44+pr45+pr46+pr47+pr48+pr49+pr50
+> critical.region
+[1] 0.06490865
+> central.region <- pr19+pr20+pr21+pr22+pr23+pr24+pr25+pr26+pr27+pr28+pr29+
++                   pr30+pr31
+> central.region
+[1] 0.9350914
+> 
+```
+
+Based on our assessment of the probability distribution of the sample space, 
+r ∊ [0,50], combined with a 0.05 significance level for the test, we conclude 
+that the critical region is *r* ∊ [0,17] and [33,50] (for a two-tailed test). 
+Here is a dataset:
+
+| State         | 2017 Homicides | 2018 Homicides | +/- |
+| :------------ | -------------: |--------------: |:--: |
+| Alabama       | 602            |           568  | -   |
+| Alaska        | 78             |            56  |     |
+
+
 
 26. Normal distribution
 
