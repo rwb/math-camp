@@ -2491,8 +2491,53 @@ Here is a dataset:
 | State         | 2017 Homicides | 2018 Homicides | +/- |
 | :------------ | -------------: |--------------: |:--: |
 | Alabama       | 602            |           568  | -   |
-| Alaska        | 78             |            56  |     |
-
+| Alaska        | 78             |            56  | -   |
+| Arizona       | 441            |           420  | -   |
+| California    | 2,022          |         1,890  | -   |
+| Colorado      | 261            |           263  | +   |
+| Connecticut   | 109            |            92  | -   |
+| Delaware      |  63            |            57  | -   |
+| Florida       |  1,269         |         1,315  | +   |
+| Georgia       |    810         |           794  | -   |
+| Hawaii        |     35         |            40  | +   |
+| Idaho         |     50         |            41  | -   |
+| Illinois      |     1,120      |           994  | -   |
+| Indiana       |     456      |           473  | +   |
+| Iowa       |     104      |           81  | -   |
+| Kansas       |     185      |           160  | -   |
+| Kentucky       |     310      |           258  | -   |
+| Louisiana       |     653      |           598  | -   |
+| Maine       |     19      |           19  | -   |
+| Maryland       |     587      |           541  | -   |
+| Massachusetts |     171      |           158  | -   |
+| Michigan |     588      |           613  | +   |
+| Minnesota |     122      |     122  | -   |
+| Mississippi |     360      |     382  | +   |
+| Missouri |     655      |     658  | +   |
+| Montana |     42      |     42  | -   |
+| Nevada |     221      |     225  | +   |
+| New Hampshire |     17      |     21  | +   |
+| New Jersey | 352 | 311 | - |
+| New Mexico | 173 | 215 | + |
+| New York | 577 | 611 | + |
+| North Carolina | 679 | 647 | - |
+| North Dakota | 15 | 20 | + |
+| Ohio | 828 | 760 | - |
+| Oklahoma | 318 | 265 | - |
+| Oregon | 127 | 102 | - |
+| Pennsylvania | 791 | 781 | - |
+| Rhode Island | 19 | 16 | - |
+| South Carolina | 444 | 481 | + |
+| South Dakota | 34 | 32 | - |
+| Tennessee | 557 | 604 | + |
+| Texas | 1,653 | 1,557 | - |
+| Utah | 79 | 67 | - |
+| Vermont | 15 | 14 | - |
+| Virginia | 455 | 425 | - |
+| Washington | 266 | 275 | + |
+| West Virginia | 112 | 97 | - |
+| Wisconsin | 202 | 204 | + |
+| Wyoming | 19 | 22 | + |
 
 
 26. Normal distribution
