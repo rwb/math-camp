@@ -3562,8 +3562,8 @@ two conditional probabilities, p(y=1|x=1) and p(y=1|x=0). If we
 want to make a credible statement that the difference between
 these two probabilities is due to variation in *x*, we need to
 think about the possibility of confounding (i.e., are there other
-variables which influence both the variation in *x* and the 
-variation in *y*?). Let's consider an example of how this issue
+variables which influence both the distribution of *x* and the 
+distribution of *y*?). Let's consider an example of how this issue
 can arise:
 
 
@@ -3608,4 +3608,75 @@ So, we plug in:
 Δ (adj) = 0.512*0.018+0.488*(-0.007) = 0.006 (which is only about 10% of the original estimate).
 ```
 
+Next, let's consider an example where we have a randomized experiment (where *x* is
+randomly assigned) and *y* is the outcome. But there are also factors, *z*, that 
+influence the outcome distribution. This is not a confounding problem because *z* does not 
+influence variation in the distribution of *x* (only the randomizer influences variation in 
+the distribution of *x*).
 
+
+| z = 0   | x = 0   | x = 1   |
+|--------:|--------:|--------:|
+|  y  = 0 |  562    | 696     |  
+|  y  = 1 |  262    | 189     |
+| Total   |  824    | 885     | 
+
+
+| z = 1   | x = 0   |   x = 1 | 
+|--------:|--------:|--------:|
+|  y  = 0 | 372     | 486     |
+|  y  = 1 | 463     | 357     |
+| Total   | 835     | 843     |
+
+
+```rout
+p(y=1 | x=0) = (262+463)/(562+262+372+463) = 0.4370102
+p(y=1 | x=1) = (189+357)/(696+189+486+357) = 0.3159722
+Δ = p(y=1 | x=1) - p(y=1 | x=0) = 0.3159722-0.4370102 = -0.121038
+
+Within the group z = 0, we have:
+
+p(y=1|x=0,z=0) = 262/824 = 0.3179612
+p(y=1|x=1,z=0) = 189/885 = 0.2135593
+Δ|z=0 = p(y=1|x=1,z=0) - p(y=1|x=0,z=0) = 0.2135593-0.3179612 = -0.1044019
+
+and, for z = 1, we have:
+
+p(y=1|x=0,z=1) = 463/835 = 0.554491
+p(y=1|x=1,z=1) = 357/843 = 0.4234875
+Δ|z=1 = p(y=1|x=1,z=1) - p(y=1|x=0,z=1) = 0.4234875-0.554491 = -0.1310035
+
+and, finally, the Δ with adjustment for the effect of z is:
+
+Δ (adj) = p(z=0)*Δ|z=0 + p(z=1)*Δ|z=1 
+
+where p(z=0) = (824+885)/(824+885+835+843) = 0.5045763 and p(z=1) = 1-p(z=0).
+So, we plug in:
+
+Δ (adj) = 0.505*(-0.104)+0.495*(-0.131) = -0.117 (which is about 97% of the original estimate).
+
+Note that we obtain the adjusted estimate of the effect of x regardless of the effect of 
+z on y. In this case, z has a strong effect on y:
+
+p(y=1 | z=0) = (262+189)/(562+696+262+189) = 0.263897
+p(y=1 | z=1) = (463+357)/(372+486+463+357) = 0.488677
+Δ = p(y=1 | x=1) - p(y=1 | x=0) = 0.488677-0.263897 = 0.22478
+
+The difference between these two case studies is the joint distribution of z and x. In the first
+case, we have:
+
+p(x=1 | z=0) = (406+411)/(442+406+417+411) = 0.4874702
+p(x=1 | z=1) = (399+859)/(136+399+302+859) = 0.7417453
+Δ = p(x=1 | z=1) - p(x=1 | z=0) = 0.7417453-0.4874702 = 0.2542751
+
+which is a large difference; while, in the second case, we have:
+
+p(x=1 | z=0) = (696+189)/(562+696+262+189) = 0.5178467
+p(x=1 | z=1) = (486+357)/(372+486+463+357) = 0.5023838
+Δ = p(x=1 | z=1) - p(x=1 | z=0) = 0.5023838-0.5178467 = -0.0154629
+
+which is a small difference. 
+```
+
+So, or *z* to be a confounder it needs to influence the distribution
+of both *x* and *y*.
