@@ -3578,7 +3578,7 @@ can arise:
 |--------:|--------:|--------:|
 |  y  = 0 | 136     | 399     |
 |  y  = 1 | 302     | 859     |
-| Total   | 338     | 1258    |
+| Total   | 438     | 1258    |
 
 
 ```rout
@@ -3594,7 +3594,7 @@ p(y=1|x=1,z=0) = 411/817 = 0.50306
 
 and, for z = 1, we have:
 
-p(y=1|x=0,z=1) = 302/338 = 0.6894977
+p(y=1|x=0,z=1) = 302/438 = 0.6894977
 p(y=1|x=1,z=1) = 859/1258 = 0.6828299
 Δ|z=1 = p(y=1|x=1,z=1) - p(y=1|x=0,z=1) = 0.6828299-0.6894977 = -0.0066678
 
@@ -3602,10 +3602,10 @@ and, finally, the Δ with adjustment for the effect of z is:
 
 Δ (adj) = p(z=0)*Δ|z=0 + p(z=1)*Δ|z=1 
 
-where p(z=0) = (859+817)/(859+817+338+1258) = 0.5122249 and p(z=1) = 1-p(z=0).
+where p(z=0) = (859+817)/(859+817+438+1258) = 0.4970344 and p(z=1) = 1-p(z=0).
 So, we plug in:
 
-Δ (adj) = 0.512*0.018+0.488*(-0.007) = 0.006 (which is only about 10% of the original estimate).
+Δ (adj) = 0.497*0.018+0.503*(-0.007) = 0.005 (which is only about 10% of the original estimate).
 ```
 
 Next, let's consider an example where we have a randomized experiment (where *x* is
