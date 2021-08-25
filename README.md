@@ -3791,8 +3791,8 @@ Summarize your conclusions.
 Solution:
 
 ```rout
-> pop.recidivism.data <- c(rep("no",773842),rep("yes",226158))
-> pop.rt <- table(pop.recidivism.data)
+pop.recidivism.data <- c(rep("no",773842),rep("yes",226158))
+pop.rt <- table(pop.recidivism.data)
 pop.rt
 pop.recidivism.rate <- pop.rt[2]/(pop.rt[1]+pop.rt[2])
 pop.recidivism.rate
