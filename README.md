@@ -3791,45 +3791,9 @@ Summarize your conclusions.
 Solution:
 
 ```rout
-pop.recidivism.data <- c(rep("no",773842),rep("yes",226158))
-pop.rt <- table(pop.recidivism.data)
-pop.rt
-pop.recidivism.rate <- pop.rt[2]/(pop.rt[1]+pop.rt[2])
-pop.recidivism.rate
-
-prop.rs <- vector()
-nsamples <- 10000
-sampsize <- 1000
-
-for(i in 1:nsamples){
-  recidivism.rs <- sample(pop.recidivism.data,size=sampsize,replace=T)
-  recidivism.rs.table <- table(recidivism.rs)
-  prop.rs[i] <- recidivism.rs.table[2]/(recidivism.rs.table[1]+recidivism.rs.table[2])
-  }
-
-mean(prop.rs)
-sd(prop.rs)
-
-prop.rs <- vector()
-se.prop.rs <- vector()
-lcl.prop.rs <- vector()
-ucl.prop.rs <- vector()
-
-lcl.multiplier <- qnorm(p=0.025,mean=0,sd=1)
-lcl.multiplier
-
-ucl.multiplier <- qnorm(p=0.975,mean=0,sd=1)
-ucl.multiplier 
-
-nsamples <- 10000
-sampsize <- 1000
-
-for(i in 1:nsamples){
-  recidivism.rs.data <- sample(pop.recidivism.data,size=sampsize,replace=T)
-  recidivism.rs.table <- table(recidivism.rs.data)
-  prop.rs[i] <- recidivism.rs.table[2]/(recidivism.rs.table[1]+recidivism.rs.table[2])
-  se.prop.rs[i] <- sqrt(prop.rs[i]*(1-prop.rs[i])/sampsize)
-  lcl.prop.rs[i] <- prop.rs[i]+lcl.multiplie> pop.rt
+> pop.recidivism.data <- c(rep("no",773842),rep("yes",226158))
+> pop.rt <- table(pop.recidivism.data)
+> pop.rt
 pop.recidivism.data
     no    yes 
 773842 226158 
@@ -3837,54 +3801,6 @@ pop.recidivism.data
 > pop.recidivism.rate
      yes 
 0.226158 
-> 
-> prop.rs <- vector()
-> nsamples <- 10000
-> sampsize <- 1000
-> 
-> for(i in 1:nsamples){
-+   recidivism.rs <- sample(pop.recidivism.data,size=sampsize,replace=T)
-+   recidivism.rs.table <- table(recidivism.rs)
-+   prop.rs[i] <- recidivism.rs.table[2]/(recidivism.rs.table[1]+recidivism.rs.table[2])
-+   }
-
-mean(prop.rs)
-sd(prop.rs)
-
-prop.rs <- vector()
-se.prop.rs <- vector()
-lcl.prop.rs <- vector()
-ucl.prop.rs <- vector()
-
-lcl.multiplier <- qnorm(p=0.025,mean=0,sd=1)
-lcl.multiplier
-
-ucl.multiplier <- qnorm(p=0.975,mean=0,sd=1)
-ucl.multiplier 
-
-nsamples <- 10000
-sampsize <- 1000
-
-for(i in 1:nsamples){
-  recidivism.rs.data <- sample(pop.recidivism.data,size=sampsize,replace=T)
-  recidivism.rs.table <- table(recidivism.rs.data)
-  prop.rs[i] <- recidivism.rs.table[2]/(recidivism.rs.table[1]+recidivism.rs.table[2])
-  se.prop.rs[i] <- sqrt(prop.rs[i]*(1-prop.rs[i])/sampsize)
-  lcl.prop.rs[i] <- prop.rs[i]+lcl.multiplier*se.prop.rs[i]
-  ucl.prop.rs[i] <- prop.rs[i]+ucl.multiplier*se.prop.rs[i]
-  }
-
-mean(prop.rs)
-sd(prop.rs)
-mean(se.prop.rs)
-median(se.prop.rs)
-pop.p.trapped <- ifelse(pop.recidivism.rate>lcl.prop.rs & pop.recidivism.rate<ucl.prop.rs,"inside","outside")
-table(pop.p.trapped)
-> 
-> mean(prop.rs)
-[1] 0.2261008
-> sd(prop.rs)
-[1] 0.01339391
 > 
 > prop.rs <- vector()
 > se.prop.rs <- vector()
@@ -3900,7 +3816,7 @@ table(pop.p.trapped)
 [1] 1.959964
 > 
 > nsamples <- 10000
-> sampsize <- 1000
+> sampsize <- 500
 > 
 > for(i in 1:nsamples){
 +   recidivism.rs.data <- sample(pop.recidivism.data,size=sampsize,replace=T)
@@ -3912,18 +3828,20 @@ table(pop.p.trapped)
 +   }
 > 
 > mean(prop.rs)
-[1] 0.2262347
+[1] 0.2261218
 > sd(prop.rs)
-[1] 0.01309429
+[1] 0.01896403
 > mean(se.prop.rs)
-[1] 0.01322148
+[1] 0.01868027
 > median(se.prop.rs)
-[1] 0.01322588
-> pop.p.trapped <- ifelse(pop.recidivism.rate>lcl.prop.rs & pop.recidivism.rate<ucl.prop.rs,"inside","outside")
+[1] 0.01870422
+> pop.p.trapped <- ifelse(pop.recidivism.rate>lcl.prop.rs &
++     pop.recidivism.rate<ucl.prop.rs,"inside","outside")
 > table(pop.p.trapped)
 pop.p.trapped
  inside outside 
-   9527     473 
+   9478     522 
+> 
 ```
 
 Note: The 95% confidence interval traps the true population parameter approximately 95% of the samples studied.
