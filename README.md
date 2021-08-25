@@ -3687,6 +3687,93 @@ of both *x* and *y*.
 median. Rerun this simulation increasing the sample size to 500. Compare your results with the larger sample size to those we obtained earlier.
 Do you notice any differences?
 
+Solution:
+
+```rout
+> # simulate a random variable, yp, for the
+> # population [popsize] which is normally 
+> # distributed with a mean of [mu] and a 
+> # standard deviation of [sigma]
+> 
+> popsize <- 1000000
+> mu <- 100
+> sigma <- 10
+> 
+> y.p <- rnorm(n=popsize,mean=mu,sd=sigma)
+> 
+> # calculate the population mean 
+> 
+> popmean <- mean(y.p)
+> popmean
+[1] 100.0069
+> 
+> # draw a single sample of size n=[sampsize] 
+> # from the population with replacement
+> 
+> sampsize <- 500
+> y.ss <- sample(y.p,size=sampsize,replace=T)
+> 
+> # calculate the sample mean and median for the single sample
+> 
+> mean(y.ss)
+[1] 99.97392
+> median(y.ss)
+[1] 99.96419
+> 
+> # now, let's repeat this process [nsamples] times
+> 
+> nsamples <- 100000
+> 
+> y.s.mean <- vector()
+> se.mean <- vector()
+> y.s.median <- vector()
+> 
+> for(i in 1:nsamples){
++   y.s <- sample(y.p,size=sampsize,replace=T)
++   y.s.mean[i] <- mean(y.s)
++   se.mean[i] <- sd(y.s)/sqrt(sampsize-1)
++   y.s.median[i] <- median(y.s)
++   }
+
+mean(y.s.mean)
+mean(y.s.median)
+
+median(y.s.mean)
+median(y.s.median)
+
+sd(y.s.mean)
+sd(y.s.median)
+
+mean(se.mean)
+median(se.mean)
+
+boxplot(y.s.mean,y.s.median)
+> 
+> mean(y.s.mean)
+[1] 100.0074
+> mean(y.s.median)
+[1] 99.99761
+> 
+> median(y.s.mean)
+[1] 100.0067
+> median(y.s.median)
+[1] 99.9983
+> 
+> sd(y.s.mean)
+[1] 0.4483768
+> sd(y.s.median)
+[1] 0.5581683
+> 
+> mean(se.mean)
+[1] 0.4475598
+> median(se.mean)
+[1] 0.4474105
+> 
+```
+
+With increased sample size, the standard deviation of the sampling distribution for both the mean and the median is smaller than it was with the N=100 sample size. Yet, the standard error for the median is still larger than for the mean (on the order of about 25% larger).
+
+
 2. Suppose our population we followed for 5 years above had only been followed for 1 year instead. Suppose further that this shortened follow-up
 period culminates in a lower population recidivism rate:
 
@@ -3700,6 +3787,149 @@ pop.recidivism.rate
 
 With this population in mind, evaluate the performance of the 95% confidence interval for a proportion drawing samples of size 500 from the population.
 Summarize your conclusions.
+
+Solution:
+
+```rout
+> pop.recidivism.data <- c(rep("no",773842),rep("yes",226158))
+> pop.rt <- table(pop.recidivism.data)
+pop.rt
+pop.recidivism.rate <- pop.rt[2]/(pop.rt[1]+pop.rt[2])
+pop.recidivism.rate
+
+prop.rs <- vector()
+nsamples <- 10000
+sampsize <- 1000
+
+for(i in 1:nsamples){
+  recidivism.rs <- sample(pop.recidivism.data,size=sampsize,replace=T)
+  recidivism.rs.table <- table(recidivism.rs)
+  prop.rs[i] <- recidivism.rs.table[2]/(recidivism.rs.table[1]+recidivism.rs.table[2])
+  }
+
+mean(prop.rs)
+sd(prop.rs)
+
+prop.rs <- vector()
+se.prop.rs <- vector()
+lcl.prop.rs <- vector()
+ucl.prop.rs <- vector()
+
+lcl.multiplier <- qnorm(p=0.025,mean=0,sd=1)
+lcl.multiplier
+
+ucl.multiplier <- qnorm(p=0.975,mean=0,sd=1)
+ucl.multiplier 
+
+nsamples <- 10000
+sampsize <- 1000
+
+for(i in 1:nsamples){
+  recidivism.rs.data <- sample(pop.recidivism.data,size=sampsize,replace=T)
+  recidivism.rs.table <- table(recidivism.rs.data)
+  prop.rs[i] <- recidivism.rs.table[2]/(recidivism.rs.table[1]+recidivism.rs.table[2])
+  se.prop.rs[i] <- sqrt(prop.rs[i]*(1-prop.rs[i])/sampsize)
+  lcl.prop.rs[i] <- prop.rs[i]+lcl.multiplie> pop.rt
+pop.recidivism.data
+    no    yes 
+773842 226158 
+> pop.recidivism.rate <- pop.rt[2]/(pop.rt[1]+pop.rt[2])
+> pop.recidivism.rate
+     yes 
+0.226158 
+> 
+> prop.rs <- vector()
+> nsamples <- 10000
+> sampsize <- 1000
+> 
+> for(i in 1:nsamples){
++   recidivism.rs <- sample(pop.recidivism.data,size=sampsize,replace=T)
++   recidivism.rs.table <- table(recidivism.rs)
++   prop.rs[i] <- recidivism.rs.table[2]/(recidivism.rs.table[1]+recidivism.rs.table[2])
++   }
+
+mean(prop.rs)
+sd(prop.rs)
+
+prop.rs <- vector()
+se.prop.rs <- vector()
+lcl.prop.rs <- vector()
+ucl.prop.rs <- vector()
+
+lcl.multiplier <- qnorm(p=0.025,mean=0,sd=1)
+lcl.multiplier
+
+ucl.multiplier <- qnorm(p=0.975,mean=0,sd=1)
+ucl.multiplier 
+
+nsamples <- 10000
+sampsize <- 1000
+
+for(i in 1:nsamples){
+  recidivism.rs.data <- sample(pop.recidivism.data,size=sampsize,replace=T)
+  recidivism.rs.table <- table(recidivism.rs.data)
+  prop.rs[i] <- recidivism.rs.table[2]/(recidivism.rs.table[1]+recidivism.rs.table[2])
+  se.prop.rs[i] <- sqrt(prop.rs[i]*(1-prop.rs[i])/sampsize)
+  lcl.prop.rs[i] <- prop.rs[i]+lcl.multiplier*se.prop.rs[i]
+  ucl.prop.rs[i] <- prop.rs[i]+ucl.multiplier*se.prop.rs[i]
+  }
+
+mean(prop.rs)
+sd(prop.rs)
+mean(se.prop.rs)
+median(se.prop.rs)
+pop.p.trapped <- ifelse(pop.recidivism.rate>lcl.prop.rs & pop.recidivism.rate<ucl.prop.rs,"inside","outside")
+table(pop.p.trapped)
+> 
+> mean(prop.rs)
+[1] 0.2261008
+> sd(prop.rs)
+[1] 0.01339391
+> 
+> prop.rs <- vector()
+> se.prop.rs <- vector()
+> lcl.prop.rs <- vector()
+> ucl.prop.rs <- vector()
+> 
+> lcl.multiplier <- qnorm(p=0.025,mean=0,sd=1)
+> lcl.multiplier
+[1] -1.959964
+> 
+> ucl.multiplier <- qnorm(p=0.975,mean=0,sd=1)
+> ucl.multiplier 
+[1] 1.959964
+> 
+> nsamples <- 10000
+> sampsize <- 1000
+> 
+> for(i in 1:nsamples){
++   recidivism.rs.data <- sample(pop.recidivism.data,size=sampsize,replace=T)
++   recidivism.rs.table <- table(recidivism.rs.data)
++   prop.rs[i] <- recidivism.rs.table[2]/(recidivism.rs.table[1]+recidivism.rs.table[2])
++   se.prop.rs[i] <- sqrt(prop.rs[i]*(1-prop.rs[i])/sampsize)
++   lcl.prop.rs[i] <- prop.rs[i]+lcl.multiplier*se.prop.rs[i]
++   ucl.prop.rs[i] <- prop.rs[i]+ucl.multiplier*se.prop.rs[i]
++   }
+> 
+> mean(prop.rs)
+[1] 0.2262347
+> sd(prop.rs)
+[1] 0.01309429
+> mean(se.prop.rs)
+[1] 0.01322148
+> median(se.prop.rs)
+[1] 0.01322588
+> pop.p.trapped <- ifelse(pop.recidivism.rate>lcl.prop.rs & pop.recidivism.rate<ucl.prop.rs,"inside","outside")
+> table(pop.p.trapped)
+pop.p.trapped
+ inside outside 
+   9527     473 
+```
+
+Note: The 95% confidence interval traps the true population parameter approximately 95% of the samples studied.
+In addition, the average value of the parameter estimates is very similar to the true population parameter.
+The average standard error is also close to the standard deviation of the (approximate) sampling distribution.
+
 
 3. For each of the 2 data sets below, calculate Δ = p(y=1|x=1)-p(y=1|x=0). Then, calculate Δ adjusting for the effect of *z*. Check on the distribution
 of *z* for different levels of *x* and *y*. Summarize your results.
@@ -3719,6 +3949,41 @@ Table 1
 |  y  = 1 | 624     | 556     |
 | Total   | 1246     | 1262   |
 
+Solution: 
+
+```rout
+> py1x0 <- (372+624)/(854+372+622+624)
+> py1x0
+[1] 0.4029126
+> py1x1 <- (298+556)/(968+298+706+556)
+> py1x1
+[1] 0.3378165
+> py1x1-py1x0
+[1] -0.06509617
+> 
+> py1x0z0 <- 372/(854+372)
+> py1x1z0 <- 298/(968+298)
+> delta.z0 <- py1x1z0-py1x0z0
+> delta.z0
+[1] -0.06803873
+> 
+> py1x0z1 <- 624/(622+624)
+> py1x1z1 <- 556/(706+556)
+> delta.z1 <- py1x1z1-py1x0z1
+> delta.z1
+[1] -0.06023205
+> 
+> pz0 <- (1226+1266)/(1226+1266+1246+1262)
+> pz1 <- 1-pz0
+> 
+> delta.adj <- pz0*delta.z0+pz1*delta.z1
+> delta.adj
+[1] -0.0641229
+> 
+```
+
+The adjusted delta is very similar to the overall delta so z is not a confounder.
+
 
 Table 2
 
@@ -3734,3 +3999,39 @@ Table 2
 |  y  = 0 | 750     | 374     |
 |  y  = 1 | 905     | 508     |
 | Total   | 1655     | 882   |
+
+Solution:
+
+```rout
+> py1x0 <- (631+905)/(1439+631+750+905)
+> py1x0
+[1] 0.412349
+> py1x1 <- (130+508)/(263+130+374+508)
+> py1x1
+[1] 0.5003922
+> py1x1-py1x0
+[1] 0.08804316
+> 
+> py1x0z0 <- 631/(1439+631)
+> py1x1z0 <- 130/(263+130)
+> delta.z0 <- py1x1z0-py1x0z0
+> delta.z0
+[1] 0.02595789
+> 
+> py1x0z1 <- 905/(750+905)
+> py1x1z1 <- 508/(374+508)
+> delta.z1 <- py1x1z1-py1x0z1
+> delta.z1
+[1] 0.02913592
+> 
+> pz0 <- (2070+393)/(2070+393+1655+882)
+> pz1 <- 1-pz0
+> 
+> delta.adj <- pz0*delta.z0+pz1*delta.z1
+> delta.adj
+[1] 0.02757042
+> 
+```
+
+In this case, the adjusted delta is much smaller than the original delta (0.089 vs. 0.028). This suggests that
+*z* is a confounder in this analysis.
