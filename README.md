@@ -52,10 +52,10 @@
 
 ##### Part 3: Software and Applications
 
-35. introduction to Excel, Stata, and R
-36. rectangular data structures
-37. basic data manipulations with Stata
-38. basic data analysis with Stata
+34. introduction to Excel, Stata, and R
+35. rectangular data structures
+36. basic data manipulations with Stata
+37. basic data analysis with Stata
 
 ### Course Materials
 
