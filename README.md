@@ -48,8 +48,7 @@
 30. random sampling
 31. sample size and sampling variability
 32. bias and efficiency
-33. inference
-34. power
+33. confounding
 
 ##### Part 3: Software and Applications
 
@@ -3555,3 +3554,49 @@ correct inference of a mean of 100. The two estimators differ
 in their sampling variation. The sample mean is, therefore, 
 a more efficient estimator of the population mean compared 
 to the sample median.
+
+32. Confounding
+
+Suppose we are interested in estimating the difference between
+two conditional probabilities, p(y=1|x=1) and p(y=1|x=0). If we
+want to make a credible statement that the difference between
+these two probabilities is due to variation in *x*, we need to
+think about the possibility of confounding (i.e., are there other
+variables which influence both the variation in *x* and the 
+variation in *y*?). Let's consider an example of how this issue
+can arise:
+
+| *z* = 0 | *x* = 0 | *x* = 1 | *z* = 1 | *x* = 0 | *x* = 1 | 
+|---|---- |-------: |-------: |-------: |-------: |-------: |
+| *y* = 0 |  442    | 406     | *y* = 0 | 136     | 399     |
+| *y* = 1 |  417    | 411     | *y* = 1 | 302     | 859     |
+| Total   |  859    | 817     | Total   | 338     | 1258    |
+
+```rout
+p(y=1 | x=0) = (417+302)/(442+417+136+302) = 0.5543562
+p(y=1 | x=1) = (411+859)/(406+411+399+859) = 0.6120482
+Δ = p(y=1 | x=1) - p(y=1 | x=0) = 0.6120482-0.5543562 = 0.057692
+
+but within the group *z* = 0, we have:
+
+p(y=1|x=0,z=0) = 417/859 = 0.4854482
+p(y=1|x=1,z=0) = 411/817 = 0.50306
+Δ|z=0 = p(y=1|x=1,z=0) - p(y=1|x=0,z=0) = 0.50306-0.4854482 = 0.0176118
+
+and, for *z* = 1, we have:
+
+p(y=1|x=0,z=1) = 302/338 = 0.6894977
+p(y=1|x=1,z=1) = 859/1258 = 0.6828299
+Δ|z=1 = p(y=1|x=1,z=1) - p(y=1|x=0,z=1) = 0.6828299-0.6894977 = -0.0066678
+
+and, finally, the Δ with adjustment for the effect of *z* is:
+
+Δ (adj) = p(z=0)*Δ|z=0 + p(z=1)*Δ|z=1 
+
+where p(z=0) = (859+817)/(859+817+338+1258) = 0.5122249 and p(z=1) = 1-p(z=0).
+So, we plug in:
+
+Δ (adj) = 0.512*0.018+0.488*(-0.007) = 0.006 (which is only about 10% of the original estimate).
+```
+
+
