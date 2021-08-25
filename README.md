@@ -3566,8 +3566,8 @@ variables which influence both the variation in *x* and the
 variation in *y*?). Let's consider an example of how this issue
 can arise:
 
-| z = 0 | x = 0 | x = 1 | z = 1 | x = 0 | x = 1 | 
-|---|---- |-------: |-------: |-------: |-------: |-------: |
+| z = 0   | x = 0   | x = 1   | z = 1   | x = 0   |   x = 1 | 
+|---|-----|--------:|--------:|--------:|--------:|--------:|
 |  y  = 0 |  442    | 406     |  y  = 0 | 136     | 399     |
 |  y  = 1 |  417    | 411     |  y  = 1 | 302     | 859     |
 | Total   |  859    | 817     | Total   | 338     | 1258    |
