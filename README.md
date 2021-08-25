@@ -3656,14 +3656,14 @@ So, we plug in:
 Δ (adj) = 0.505*(-0.104)+0.495*(-0.131) = -0.117 (which is about 97% of the original estimate).
 
 Note that we obtain the adjusted estimate of the effect of x regardless of the effect of 
-z on y. In this case, z has a strong effect on y:
+z on p(y). In this case, variation in z has a strong effect on the distribution of y:
 
 p(y=1 | z=0) = (262+189)/(562+696+262+189) = 0.263897
 p(y=1 | z=1) = (463+357)/(372+486+463+357) = 0.488677
 Δ = p(y=1 | x=1) - p(y=1 | x=0) = 0.488677-0.263897 = 0.22478
 
-The difference between these two case studies is the joint distribution of z and x. In the first
-case, we have:
+The difference between these two case studies is the joint or bivariate distribution of z and x. 
+In the first case, we have:
 
 p(x=1 | z=0) = (406+411)/(442+406+417+411) = 0.4874702
 p(x=1 | z=1) = (399+859)/(136+399+302+859) = 0.7417453
