@@ -3680,3 +3680,57 @@ which is a small difference.
 
 So, for *z* to be a confounder it needs to influence the distribution
 of both *x* and *y*.
+
+##### Problems for Wednesday 8/25/21
+
+1. In one of our simulations above, we demonstrated that the sample mean is a more efficient estimator of the population mean than the sample
+median. Rerun this simulation increasing the sample size to 500. Compare your results with the larger sample size to those we obtained earlier.
+Do you notice any differences?
+
+2. Suppose our population we followed for 5 years above had only been followed for 1 year instead. Suppose further that this shortened follow-up
+period culminates in a lower population recidivism rate:
+
+```r
+pop.recidivism.data <- c(rep("no",773842),rep("yes",226158))
+pop.rt <- table(pop.recidivism.data)
+pop.rt
+pop.recidivism.rate <- pop.rt[2]/(pop.rt[1]+pop.rt[2])
+pop.recidivism.rate
+```
+
+With this population in mind, evaluate the performance of the 95% confidence interval for a proportion drawing samples of size 500 from the population.
+Summarize your conclusions.
+
+3. For each of the 2 data sets below, calculate Δ = p(y=1|x=1)-p(y=1|x=0). Then, calculate Δ adjusting for the effect of *z*. Check on the distribution
+of *z* for different levels of *x* and *y*. Summarize your results.
+
+Table 1
+
+| z = 0   | x = 0   | x = 1   |
+|--------:|--------:|--------:|
+|  y  = 0 |  854    | 968     |  
+|  y  = 1 |  372    | 298     |
+| Total   |  1226    | 1266     | 
+
+
+| z = 1   | x = 0   |   x = 1 | 
+|--------:|--------:|--------:|
+|  y  = 0 | 622     | 706     |
+|  y  = 1 | 624     | 556     |
+| Total   | 1246     | 1262   |
+
+
+Table 2
+
+| z = 0   | x = 0   | x = 1   |
+|--------:|--------:|--------:|
+|  y  = 0 |  1439    | 263     |  
+|  y  = 1 |  631    | 130    |
+| Total   |  2070    | 393     | 
+
+
+| z = 1   | x = 0   |   x = 1 | 
+|--------:|--------:|--------:|
+|  y  = 0 | 750     | 374     |
+|  y  = 1 | 905     | 508     |
+| Total   | 1655     | 882   |
