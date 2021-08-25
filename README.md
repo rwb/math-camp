@@ -3678,5 +3678,5 @@ p(x=1 | z=1) = (486+357)/(372+486+463+357) = 0.5023838
 which is a small difference. 
 ```
 
-So, or *z* to be a confounder it needs to influence the distribution
+So, for *z* to be a confounder it needs to influence the distribution
 of both *x* and *y*.
