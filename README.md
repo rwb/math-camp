@@ -3960,9 +3960,7 @@ Solution:
 In this case, the adjusted delta is much smaller than the original delta (0.089 vs. 0.028; its value diminished by about 2/3). This suggests that
 *z* is a confounder in this analysis.
 
-#### Using rectangular datasets in R
-
-### How to Read in a Data Set ###
+33. Using rectangular datasets in R
 
 Consider the following comma-delimited dataset:
 
