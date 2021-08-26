@@ -3555,7 +3555,7 @@ in their sampling variation. The sample mean is, therefore,
 a more efficient estimator of the population mean compared 
 to the sample median.
 
-32. Confounding
+33. Confounding
 
 Suppose we are interested in estimating the difference between
 two conditional probabilities, p(y=1|x=1) and p(y=1|x=0). If we
@@ -3960,7 +3960,7 @@ Solution:
 In this case, the adjusted delta is much smaller than the original delta (0.089 vs. 0.028; its value diminished by about 2/3). This suggests that
 *z* is a confounder in this analysis.
 
-33. Using rectangular datasets in R
+35. Using rectangular datasets in R
 
 Consider the following comma-delimited dataset:
 
