@@ -3959,3 +3959,407 @@ Solution:
 
 In this case, the adjusted delta is much smaller than the original delta (0.089 vs. 0.028; its value diminished by about 2/3). This suggests that
 *z* is a confounder in this analysis.
+
+#### Using rectangular datasets in R
+
+### How to Read in a Data Set ###
+
+Consider the following comma-delimited dataset:
+
+```R
+state,county,icr2005,icr2006,unemployment,urban,region,infantmort
+NC,Alamance,4668.4,4807.4,2.8,2,2,8.5
+NC,Alexander,2538.4,2498.7,2.3,2,2,12.7
+NC,Alleghany,.,.,7.0,1,1,20.4
+NC,Anson,5511.1,4921.7,6.6,1,2,10.5
+NC,Ashe,1744.7,1882.4,6.2,1,1,3.8
+NC,Avery,1235.0,1270.8,3.4,1,1,0.0
+NC,Beaufort,3329.7,3351.4,7.6,2,3,1.7
+NC,Bertie,2954.2,2592.6,9.1,1,3,8.7
+NC,Bladen,4104.7,5089.9,5.8,1,3,12.8
+NC,Brunswick,4661.4,4653.5,4.5,2,3,6.7
+NC,Buncombe,4149.6,3715.5,2.6,2,1,5.4
+NC,Burke,2987.5,2513.5,3.2,2,1,5.0
+NC,Cabarrus,3420.8,3603.8,2.6,2,2,8.8
+NC,Caldwell,3404.9,3467.6,2.4,2,1,11.5
+NC,Camden,730.2,870.0,2.6,2,3,0.0
+NC,Carteret,3179.2,3338.1,4.4,2,3,9.2
+NC,Caswell,2420.8,2554.8,2.6,1,2,4.7
+NC,Catawba,5243.3,4642.4,2.2,2,2,5.1
+NC,Chatham,2412.8,2666.0,1.9,1,2,11.1
+NC,Cherokee,2846.0,.,7.4,1,1,7.7
+NC,Chowan,2708.9,2826.5,4.0,1,3,5.5
+NC,Clay,1486.8,1610.0,4.1,1,1,11.8
+NC,Cleveland,4360.1,3945.9,6.0,2,2,11.8
+NC,Columbus,5987.8,5688.5,10.6,1,3,12.1
+NC,Craven,4318.5,4175.7,4.2,2,3,8.2
+NC,Cumberland,6846.9,7380.2,4.2,2,2,10.7
+NC,Currituck,2875.3,2458.2,2.5,1,3,0.0
+NC,Dare,5404.7,5010.1,5.1,1,3,6.1
+NC,Davidson,3508.4,3545.6,2.8,2,2,7.4
+NC,Davie,3508.4,3545.6,4.3,2,2,7.2
+NC,Duplin,3399.5,3027.9,5.0,1,3,6.3
+NC,Durham,6606.6,6640.5,2.3,3,2,6.8
+NC,Edgecombe,5369.4,5856.9,7.5,2,3,14.0
+NC,Forsyth,5764.6,6072.4,2.8,3,2,10.0
+NC,Franklin,2313.9,2152.1,2.6,2,2,7.0
+NC,Gaston,5487.7,5301.2,6.1,3,2,7.7
+NC,Gates,1356.3,.,3.2,1,3,8.8
+NC,Graham,.,.,8.1,1,1,11.0
+NC,Granville,3877.8,3965.8,4.1,2,2,8.1
+NC,Greene,2415.2,2949.5,4.4,1,3,22.7
+NC,Guilford,5819.0,5754.7,2.9,3,2,10.2
+NC,Halifax,5346.4,5270.5,7.5,1,3,22.1
+NC,Harnett,4189.6,3928.9,3.9,2,2,8.9
+NC,Haywood,3120.5,3283.0,3.9,2,1,5.7
+NC,Henderson,3010.9,2921.6,2.1,2,1,5.4
+NC,Hertford,4917.8,3536.7,5.5,1,3,9.6
+NC,Hoke,4095.7,3997.9,8.0,2,2,9.9
+NC,Hyde,514.0,.,6.5,1,3,0.0
+NC,Iredell,4015.9,.,3.3,2,2,4.6
+NC,Jackson,3562.9,3681.7,3.5,1,1,2.9
+NC,Johnston,3327.7,3583.8,2.2,2,2,7.8
+NC,Jones,3437.2,2810.9,5.2,1,3,0.0
+NC,Lee,4823.9,4739.9,4.1,2,2,13.4
+NC,Lenoir,6610.5,5830.8,5.5,2,3,11.6
+NC,Lincoln,1104.7,3792.7,4.1,2,2,3.5
+NC,Macon,2165.6,2270.4,3.5,1,1,9.1
+NC,Madison,1257.5,1313.6,3.3,1,1,0.0
+NC,Martin,5161.5,3466.2,9.5,1,3,3.2
+NC,McDowell,2841.8,2779.4,4.6,1,1,8.2
+NC,Mecklenburg,7732.8,7663.6,2.5,3,2,9.2
+NC,Mitchell,.,.,5.1,1,1,6.1
+NC,Montgomery,3347.7,4144.9,4.0,1,2,5.4
+NC,Moore,3000.4,3045.0,3.9,2,2,6.2
+NC,Nash,5507.4,6071.8,5.3,2,2,11.4
+NC,New Hanover,6445.1,6157.7,3.5,3,3,5.0
+NC,Northampton,3633.1,2818.7,6.5,1,3,13.2
+NC,Onslow,2828.0,4067.0,3.6,2,3,6.8
+NC,Orange,3913.3,4103.3,1.3,2,2,12.0
+NC,Pamlico,673.1,.,3.7,1,3,16.3
+NC,Pasquotank,4662.6,4336.7,3.7,1,3,5.8
+NC,Pender,2492.4,2740.0,4.7,1,3,6.3
+NC,Perquimans,2660.5,2567.1,3.7,1,3,17.9
+NC,Person,3212.1,3531.3,4.7,1,2,8.9
+NC,Pitt,5426.9,5805.7,4.7,2,3,7.1
+NC,Polk,2124.3,2020.0,3.4,1,1,12.3
+NC,Randolph,3827.7,3786.6,3.1,2,2,3.4
+NC,Richmond,5564.9,6534.4,6.6,1,2,23.0
+NC,Robeson,7106.0,6572.1,9.0,2,2,12.8
+NC,Rockingham,4437.6,4717.3,5.4,2,2,3.8
+NC,Rowan,3818.4,.,4.8,2,2,14.3
+NC,Rutherford,3568.5,3178.4,7.6,2,1,7.7
+NC,Sampson,3823.3,3481.7,4.0,1,3,10.4
+NC,Scotland,4990.8,4203.1,7.4,2,2,20.7
+NC,Stanly,2735.0,2997.0,4.2,2,2,16.9
+NC,Stokes,2923.5,2890.6,3.2,2,2,8.2
+NC,Surry,3686.1,3663.2,4.3,2,2,5.8
+NC,Swain,4172.5,5337.1,12.5,1,1,5.1
+NC,Transylvania,1985.6,1977.9,2.6,1,1,7.9
+NC,Tyrrell,1868.7,1617.9,9.7,1,3,45.5
+NC,Union,3494.9,3692.5,2.3,2,2,9.6
+NC,Vance,6977.1,6996.1,8.9,2,2,19.8
+NC,Wake,3359.2,3326.5,1.5,3,2,7.0
+NC,Warren,3167.8,3293.7,7.8,1,3,5.3
+NC,Washington,3093.5,.,6.3,1,3,0.0
+NC,Watauga,2820.9,2874.5,1.5,2,1,23.1
+NC,Wayne,4787.8,4712.3,4.0,2,3,10.8
+NC,Wilkes,2863.8,2716.3,3.3,1,1,12.0
+NC,Wilson,4269.1,4796.6,7.0,2,3,16.7
+NC,Yadkin,2771.9,3080.0,3.3,2,2,2.1
+NC,Yancey,780.3,804.3,3.9,1,1,0.0
+SC,Abbeville,290.4,339.1,4.2,1,1,23.0
+SC,Aiken,358.2,398.6,4.3,2,2,11.6
+SC,Allendale,318.2,379.4,4.7,1,2,20.0
+SC,Anderson,555.8,517.6,2.6,2,1,9.1
+SC,Bamberg,390.6,395.6,5.1,1,2,11.4
+SC,Barnwell,418.5,448.0,6.3,1,2,2.9
+SC,Beaufort,451.5,448.9,2.1,2,3,6.5
+SC,Berkeley,381.6,400.4,3.0,2,3,9.5
+SC,Calhoun,284.1,266.6,4.7,1,2,6.4
+SC,Charleston,629.3,616.6,3.0,3,3,11.3
+SC,Cherokee,570.4,574.5,4.9,2,1,17.2
+SC,Chester,534.3,552.5,7.4,2,2,14.3
+SC,Chesterfield,357.8,372.2,5.5,1,2,11.4
+SC,Clarendon,458.7,482.6,6.9,1,3,6.9
+SC,Colleton,491.4,538.1,4.2,2,3,12.0
+SC,Darlington,750.7,758.1,6.5,2,3,7.8
+SC,Dillon,632.3,591.0,10.5,2,3,2.1
+SC,Dorchester,376.3,396.8,3.0,2,3,8.2
+SC,Edgefield,222.4,230.9,3.3,1,2,0.0
+SC,Fairfield,431.7,456.1,7.4,1,2,26.1
+SC,Florence,686.1,666.9,4.8,3,3,11.4
+SC,Georgetown,386.2,424.4,7.8,2,3,12.8
+SC,Greenville,502.6,490.0,2.0,3,1,7.2
+SC,Greenwood,613.8,620.1,5.1,2,1,17.7
+SC,Hampton,332.4,423.9,5.0,1,2,27.5
+SC,Horry,749.6,722.2,3.6,3,3,9.6
+SC,Jasper,682.2,648.2,3.5,1,3,3.1
+SC,Kershaw,361.4,328.5,4.9,2,2,2.8
+SC,Lancaster,466.6,429.8,4.1,2,2,8.8
+SC,Laurens,466.7,457.0,3.4,2,1,12.5
+SC,Lee,422.3,389.8,7.5,1,2,7.6
+SC,Lexington,367.2,350.2,2.0,2,2,4.5
+SC,McCormick,231.7,176.6,7.9,1,2,26.0
+SC,Marion,621.8,594.4,15.4,1,3,8.1
+SC,Marlboro,628.9,593.8,10.5,1,3,8.5
+SC,Newberry,344.8,324.4,4.7,2,2,2.0
+SC,Oconee,367.1,303.9,3.8,2,1,5.9
+SC,Orangeburg,620.6,592.5,8.0,2,2,10.2
+SC,Pickens,387.2,335.2,2.5,2,1,8.7
+SC,Richland,596.7,576.3,2.8,3,2,8.7
+SC,Saluda,180.4,168.0,4.3,1,2,7.9
+SC,Spartanburg,503.8,539.2,3.4,3,1,13.8
+SC,Sumter,558.5,570.2,4.7,2,2,8.6
+SC,Union,428.8,434.0,6.6,2,1,19.3
+SC,Williamsburg,412.7,374.2,12.4,1,3,9.7
+SC,York,450.4,423.7,3.6,3,2,4.9
+```
+
+Note that this raw datafile has 147 rows. The first row contains
+the variable names and the following 146 rows represent each county
+in North and South Carolina (NC has 100 counties and SC has 46 
+counties). Here is a summary dictionary:
+
+* state (NC/SC)
+* county (the spelled out name of each county)
+* icr2005 (2005 index crime rate for each county)
+* icr2006 (2006 index crime rate for each county)
+* unemployment (2004 unemployment rate for each county)
+* urban (1 = rural, 2 = mix of rural and urban, 3 = urban)
+* region (1 = mountains, 2 = piedmont, 3 = coastal)
+* infantmort (2004 infant mortality rate expressed in terms
+of the number of infant deaths per 1000 live births)
+
+One complication of this file is that the crime rates are 
+expressed on different population scales for the counties
+in the two states. Another complication is that there is some
+missing data on crime rates for some of the counties. We address
+both of these issues as we read in the data. To do this, let's
+save the data file to our computer, call it ncsc.txt, and
+read it into R's memory with the following code:
+
+```R
+ncsc <- read.csv(file="ncsc.txt",header=T,na.strings=".")
+head(ncsc)
+tail(ncsc)
+```
+
+and here is the output:
+
+```
+> ncsc <- read.csv(file="ncsc.txt",header=T,na.strings=".")
+> head(ncsc)
+  state    county icr2005 icr2006 unemployment urban region infantmort
+1    NC  Alamance  4668.4  4807.4          2.8     2      2        8.5
+2    NC Alexander  2538.4  2498.7          2.3     2      2       12.7
+3    NC Alleghany      NA      NA          7.0     1      1       20.4
+4    NC     Anson  5511.1  4921.7          6.6     1      2       10.5
+5    NC      Ashe  1744.7  1882.4          6.2     1      1        3.8
+6    NC     Avery  1235.0  1270.8          3.4     1      1        0.0
+> tail(ncsc)
+    state       county icr2005 icr2006 unemployment urban region infantmort
+141    SC       Saluda   180.4   168.0          4.3     1      2        7.9
+142    SC  Spartanburg   503.8   539.2          3.4     3      1       13.8
+143    SC       Sumter   558.5   570.2          4.7     2      2        8.6
+144    SC        Union   428.8   434.0          6.6     2      1       19.3
+145    SC Williamsburg   412.7   374.2         12.4     1      3        9.7
+146    SC         York   450.4   423.7          3.6     3      2        4.9
+> 
+```
+
+The next problem we have to address is
+the fact that the crime rates for the two
+states are published differently. In NC,
+the index crime rates are standardized 
+per 100k population while, in SC, they are
+standardized per 10k population. I also want 
+to flag the counties with missing 
+2005 crime rate information.
+
+```R
+ncsc2 <- ncsc
+ncsc2$crime2005 <- ifelse(ncsc2$state=="SC",ncsc2$icr2005*10,ncsc2$icr2005)
+ncsc2$miss2005 <- ifelse(is.na(ncsc2$icr2005),1,0)
+head(ncsc2,n=5)
+tail(ncsc2,n=5)
+```
+
+and here is our output:
+
+```
+> ncsc2 <- ncsc
+> ncsc2$crime2005 <- ifelse(ncsc2$state=="SC",ncsc2$icr2005*10,ncsc2$icr2005)
+> ncsc2$miss2005 <- ifelse(is.na(ncsc2$icr2005),1,0)
+> head(ncsc2,n=5)
+  state    county icr2005 icr2006 unemployment urban region infantmort
+1    NC  Alamance  4668.4  4807.4          2.8     2      2        8.5
+2    NC Alexander  2538.4  2498.7          2.3     2      2       12.7
+3    NC Alleghany      NA      NA          7.0     1      1       20.4
+4    NC     Anson  5511.1  4921.7          6.6     1      2       10.5
+5    NC      Ashe  1744.7  1882.4          6.2     1      1        3.8
+  crime2005 miss2005
+1    4668.4        0
+2    2538.4        0
+3        NA        1
+4    5511.1        0
+5    1744.7        0
+> tail(ncsc2,n=5)
+    state       county icr2005 icr2006 unemployment urban region infantmort
+142    SC  Spartanburg   503.8   539.2          3.4     3      1       13.8
+143    SC       Sumter   558.5   570.2          4.7     2      2        8.6
+144    SC        Union   428.8   434.0          6.6     2      1       19.3
+145    SC Williamsburg   412.7   374.2         12.4     1      3        9.7
+146    SC         York   450.4   423.7          3.6     3      2        4.9
+    crime2005 miss2005
+142      5038        0
+143      5585        0
+144      4288        0
+145      4127        0
+146      4504        0
+> 
+```
+
+Now, 
+we subset the dataframe so that only the
+counties with valid 2005 crime rates are included. 
+Then, we round off the crime rates to the nearest whole number
+so the two states' crime rates are reported at the same 
+precision. Finally, we write the ncsc3 dataframe to 
+an external R dataset.
+
+```R
+ncsc3 <- subset(ncsc2,miss2005==0)
+ncsc3$crime2005 <- round(ncsc3$crime2005,digits=0)
+head(ncsc3)
+tail(ncsc3)
+save(ncsc3,file="ncsc3.rdata")
+```
+
+and here is the output:
+
+```
+> ncsc3 <- subset(ncsc2,miss2005==0)
+> ncsc3$crime2005 <- round(ncsc3$crime2005,digits=0)
+> head(ncsc3)
+  state    county icr2005 icr2006 unemployment urban region infantmort
+1    NC  Alamance  4668.4  4807.4          2.8     2      2        8.5
+2    NC Alexander  2538.4  2498.7          2.3     2      2       12.7
+4    NC     Anson  5511.1  4921.7          6.6     1      2       10.5
+5    NC      Ashe  1744.7  1882.4          6.2     1      1        3.8
+6    NC     Avery  1235.0  1270.8          3.4     1      1        0.0
+7    NC  Beaufort  3329.7  3351.4          7.6     2      3        1.7
+  crime2005 miss2005
+1      4668        0
+2      2538        0
+4      5511        0
+5      1745        0
+6      1235        0
+7      3330        0
+> tail(ncsc3)
+    state       county icr2005 icr2006 unemployment urban region infantmort
+141    SC       Saluda   180.4   168.0          4.3     1      2        7.9
+142    SC  Spartanburg   503.8   539.2          3.4     3      1       13.8
+143    SC       Sumter   558.5   570.2          4.7     2      2        8.6
+144    SC        Union   428.8   434.0          6.6     2      1       19.3
+145    SC Williamsburg   412.7   374.2         12.4     1      3        9.7
+146    SC         York   450.4   423.7          3.6     3      2        4.9
+    crime2005 miss2005
+141      1804        0
+142      5038        0
+143      5585        0
+144      4288        0
+145      4127        0
+146      4504        0
+> save(ncsc3,file="ncsc3.rdata")
+> 
+```
+
+When this process has completed, you should see the new
+R dataframe in your working directory.
+
+Now, let's exit R and then restart. Once you are back
+in the R command window, let's use the ncsc3.rdata
+dataset to create a pair of boxplots comparing the 2005 
+crime rates and the 2004 infant mortality rates between the 
+two states:
+
+```R
+load(file="ncsc3.rdata")
+
+nrow(ncsc3)
+
+library(psych)
+describe(ncsc3)
+
+par(mfrow=c(1,2))
+
+boxplot(ncsc3$crime2005~ncsc3$state,
+  main="2005 Crime Rates by State",
+  xlab="State",
+  ylab="2005 Crime Rate per 100k Population",
+  ylim=c(0,8000),
+  names=c("North Carolina","South Carolina"))
+
+boxplot(ncsc3$infantmort~ncsc3$state,
+  main="2004 Infant Mortality Rates by State",
+  xlab="State",
+  ylab="Infant Deaths per 1,000 Live Births",
+  ylim=c(0,50),
+  names=c("North Carolina","South Carolina"))
+```
+
+Here is the plot created by our R code:
+
+![2boxplot.png](gfiles/2boxplot.png)
+
+and the output that appears in the R command window:
+
+```
+> load(file="ncsc3.rdata")
+> 
+> nrow(ncsc3)
+[1] 143
+> 
+> library(psych)
+> describe(ncsc3)
+             vars   n    mean      sd median trimmed     mad   min    max
+state*          1 143    1.32    0.47    1.0    1.28    0.00   1.0    2.0
+county*         2 143   71.68   41.30   72.0   71.64   53.37   1.0  142.0
+icr2005         3 143 2659.38 1984.67 2828.0 2503.76 3035.92 180.4 7732.8
+icr2006         4 136 2683.82 1999.43 2814.8 2524.67 2946.22 168.0 7663.6
+unemployment    5 143    4.84    2.41    4.2    4.54    1.78   1.3   15.4
+urban           6 143    1.69    0.64    2.0    1.61    1.48   1.0    3.0
+region          7 143    2.14    0.74    2.0    2.17    1.48   1.0    3.0
+infantmort      8 143    9.53    6.48    8.6    8.83    4.60   0.0   45.5
+crime2005       9 143 3998.36 1558.47 3823.0 3975.51 1454.43 514.0 7733.0
+miss2005       10 143    0.00    0.00    0.0    0.00    0.00   0.0    0.0
+              range  skew kurtosis     se
+state*          1.0  0.76    -1.44   0.04
+county*       141.0  0.01    -1.25   3.45
+icr2005      7552.4  0.39    -0.89 165.97
+icr2006      7495.6  0.38    -0.88 171.45
+unemployment   14.1  1.41     2.50   0.20
+urban           2.0  0.39    -0.74   0.05
+region          2.0 -0.22    -1.15   0.06
+infantmort     45.5  1.74     5.99   0.54
+crime2005    7219.0  0.17    -0.35 130.33
+miss2005        0.0   NaN      NaN   0.00
+> 
+> par(mfrow=c(1,2))
+> 
+> boxplot(ncsc3$crime2005~ncsc3$state,
++   main="2005 Crime Rates by State",
++   xlab="State",
++   ylab="2005 Crime Rate per 100k Population",
++   ylim=c(0,8000),
++   names=c("North Carolina","South Carolina"))
+> 
+> boxplot(ncsc3$infantmort~ncsc3$state,
++   main="2004 Infant Mortality Rates by State",
++   xlab="State",
++   ylab="Infant Deaths per 1,000 Live Births",
++   ylim=c(0,50),
++   names=c("North Carolina","South Carolina"))
+> 
+```
