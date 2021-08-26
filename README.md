@@ -4136,11 +4136,11 @@ expressed on different population scales for the counties
 in the two states. Another complication is that there is some
 missing data on crime rates for some of the counties. We address
 both of these issues as we read in the data. To do this, let's
-save the data file to our computer, call it ncsc.txt, and
+save the data file to our computer, call it ncsc.csv, and
 read it into R's memory with the following code:
 
 ```R
-ncsc <- read.csv(file="ncsc.txt",header=T,na.strings=".")
+ncsc <- read.csv(file="ncsc.csv",header=T,na.strings=".")
 head(ncsc)
 tail(ncsc)
 ```
@@ -4148,7 +4148,7 @@ tail(ncsc)
 and here is the output:
 
 ```
-> ncsc <- read.csv(file="ncsc.txt",header=T,na.strings=".")
+> ncsc <- read.csv(file="ncsc.csv",header=T,na.strings=".")
 > head(ncsc)
   state    county icr2005 icr2006 unemployment urban region infantmort
 1    NC  Alamance  4668.4  4807.4          2.8     2      2        8.5
